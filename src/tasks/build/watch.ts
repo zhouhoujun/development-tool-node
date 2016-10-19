@@ -1,4 +1,5 @@
 import * as gulp from 'gulp';
+import * as _ from 'lodash';
 import { NodeBuildOption } from '../../task';
 import { TaskConfig } from 'development-tool';
 const browserSync = require('browser-sync');

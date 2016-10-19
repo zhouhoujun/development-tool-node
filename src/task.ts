@@ -59,21 +59,21 @@ export default <ITaskDefine>{
         }
     },
 
-    moduleTaskLoader(oper: Operation, option: TaskOption, findInModule: tasksInModule, loadFromDir: tasksInDir): Promise<Task[]> {
-        console.log('load task');
-        let taskDirs = [path.join(__dirname, './tasks/' + Operation.build.toString())];
+    moduleTaskLoader(config: TaskConfig, findInModule: tasksInModule, loadFromDir: tasksInDir): Promise<Task[]> {
+        let oper = config.oper;
+        let taskDirs = [path.join(__dirname, './tasks/build')];
         if (oper >= Operation.test) {
-            taskDirs.push(path.join(__dirname, './tasks/' + Operation.test.toString()));
+            taskDirs.push(path.join(__dirname, './tasks/test'));
         }
-        if (oper >= Operation.e2e) {
-            taskDirs.push(path.join(__dirname, './tasks/' + Operation.e2e.toString()));
-        }
-        if (oper >= Operation.release) {
-            taskDirs.push(path.join(__dirname, './tasks/' + Operation.release.toString()));
-        }
-        if (oper >= Operation.deploy) {
-            taskDirs.push(path.join(__dirname, './tasks/' + Operation.deploy.toString()));
-        }
+        // if (oper >= Operation.e2e) {
+        //     taskDirs.push(path.join(__dirname, './tasks/e2e'));
+        // }
+        // if (oper >= Operation.release) {
+        //     taskDirs.push(path.join(__dirname, './tasks/release'));
+        // }
+        // if (oper >= Operation.deploy) {
+        //     taskDirs.push(path.join(__dirname, './tasks/deploy'));
+        // }
         return loadFromDir(taskDirs);
     }
 };

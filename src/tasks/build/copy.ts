@@ -1,8 +1,9 @@
 import * as gulp from 'gulp';
+import * as _ from 'lodash';
 import { NodeBuildOption } from '../../task';
 import { TaskConfig } from 'development-tool';
 import * as runSequence from 'run-sequence';
-const cache = require('gulp-cached');
+const cache = require('gulp-cache');
 
 export = (config: TaskConfig) => {
     let option: NodeBuildOption = <NodeBuildOption>config.option;

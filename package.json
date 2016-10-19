@@ -36,6 +36,7 @@
     "@types/lodash": "^4.14.37",
     "@types/minimist": "^1.1.29",
     "@types/run-sequence": "0.0.28",
+    "browser-sync": "^2.17.5",
     "checksum": "^0.1.1",
     "color-console": "^0.0.1",
     "del": "^2.2.1",
