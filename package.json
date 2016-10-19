@@ -2,8 +2,8 @@
   "name": "development-tool-node",
   "version": "0.0.1-beta1",
   "description": "development build tools for node.",
-  "main": "./lib/tools.js",
-  "typings": "./lib/tools",
+  "main": "./lib/task.js",
+  "typings": "./lib/task",
   "scripts": {
     "gulp": "gulp",
     "postinstall": "npm prune",
@@ -32,26 +32,30 @@
   },
   "dependencies": {
     "@types/gulp": "^3.8.32",
+    "@types/gulp-mocha": "0.0.29",
     "@types/lodash": "^4.14.37",
     "@types/minimist": "^1.1.29",
     "@types/run-sequence": "0.0.28",
     "checksum": "^0.1.1",
     "color-console": "^0.0.1",
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
-    "run-sequence": "*",
-    "lodash": "^4.13.1"
+    "gulp-cache": "^0.4.5",
+    "gulp-mocha": "^3.0.1",
+    "gulp-typescript": "^3.0.2",
+    "lodash": "^4.13.1",
+    "merge2": "^1.0.2",
+    "run-sequence": "^1.2.2",
+    "ts-node": "^1.6.0",
+    "typescript": "^2.0.3"
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "del": "^2.2.1",
     "development-tool": "0.0.1-beta2",
-    "gulp-typescript": "^3.0.2",
-    "merge2": "^1.0.2",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
     "tslint": "^3.15.1",
     "tslint-stylish": "^2.1.0-beta",
-    "typescript": "^2.0.3",
     "zone.js": "^0.6.10"
   },
   "homepage": "https://github.com/zhouhoujun/development-tool-node#readme"
