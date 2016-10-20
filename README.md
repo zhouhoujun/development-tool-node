@@ -20,19 +20,23 @@ npm install development-tool-node
 You can `import` modules:
 
 ```js
-
+import * as gulp from 'gulp';
 import  { Development } from 'development-tool';
 
-Development.create(__dirname, {
+Development.create(gulp, __dirname, {
     tasks:[
-        module:'development-tool-node'
+        {
+            type:'module' //'module, dir'
+            module:'development-tool-node'
+        }
     ]
 });
-//or
-new Development(__dirname, {
-    tasks:[
+
+Development.create(gulp, __dirname, {
+    tasks:{
+        type:'module' //'module, dir'
         module:'development-tool-node'
-    ]
+    }
 });
 
 ```
