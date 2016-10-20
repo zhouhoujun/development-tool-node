@@ -6,15 +6,41 @@ import { Src, Task, TaskNameSequence, IMap, TaskConfig, EnvOption, Operation, Ta
 
 export interface NodeBuildOption extends TaskOption {
     /**
-     * code setting use to test
+     * test code src to run test.
      * 
      * @type {(string | string[])}
      * @memberOf NodeTestConfig
      */
     test?: Src;
+    /**
+     * tsconfig for typescript
+     * 
+     * @type {string}
+     * @memberOf NodeBuildOption
+     */
     tsconfig?: string;
+    /**
+     * typescript src.
+     * 
+     * @type {Src}
+     * @memberOf NodeBuildOption
+     */
     ts?: Src;
+    /**
+     * watch typescript file changed.
+     * 
+     * @param {TaskConfig} config
+     * @param {WatchEvent} event
+     * 
+     * @memberOf NodeBuildOption
+     */
     tsWatchChanged?(config: TaskConfig, event: WatchEvent): void;
+    /**
+     * mocha test config.
+     * 
+     * @type {MochaSetupOptions}
+     * @memberOf NodeBuildOption
+     */
     mochaOptions?: MochaSetupOptions;
     /**
      * static asserts.
@@ -23,6 +49,15 @@ export interface NodeBuildOption extends TaskOption {
      * @memberOf NodeBuildOption
      */
     asserts?: IMap<Src>;
+    /**
+     * watch assert file changed.
+     * 
+     * @param {string} assert
+     * @param {TaskConfig} config
+     * @param {WatchEvent} event
+     * 
+     * @memberOf NodeBuildOption
+     */
     assertWatchChanged?(assert: string, config: TaskConfig, event: WatchEvent): void;
 }
 
