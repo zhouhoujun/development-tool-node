@@ -1,11 +1,11 @@
-import * as gulp from 'gulp';
+import { Gulp } from 'gulp';
 import * as _ from 'lodash';
 import { NodeBuildOption } from '../../task';
 import { TaskConfig } from 'development-tool';
 import * as runSequence from 'run-sequence';
-const cache = require('gulp-cache');
+const cache = require('gulp-cached');
 
-export = (config: TaskConfig) => {
+export = (gulp: Gulp, config: TaskConfig) => {
     let option: NodeBuildOption = <NodeBuildOption>config.option;
     let tasks = [];
     if (option.asserts) {
@@ -25,12 +25,14 @@ export = (config: TaskConfig) => {
         });
     }
 
+    // console.log('register copy-asserts task by gulp', tasks);
+
     gulp.task('copy-asserts', callback => {
         if (tasks.length > 0) {
             tasks.push(callback);
-            return runSequence(tasks);
+            runSequence.call(runSequence.use(gulp), tasks);
         } else {
-            return callback();
+            callback();
         }
     });
 }

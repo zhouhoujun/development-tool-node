@@ -1,5 +1,6 @@
 /// <reference types="mocha"/>
 import * as path from 'path';
+import { WatchEvent } from 'gulp';
 import { Src, Task, TaskNameSequence, IMap, TaskConfig, EnvOption, Operation, TaskOption, tasksInModule, tasksInDir, ITaskDefine } from 'development-tool';
 
 
@@ -13,6 +14,7 @@ export interface NodeBuildOption extends TaskOption {
     test?: Src;
     tsconfig?: string;
     ts?: Src;
+    tsWatchChanged?(config: TaskConfig, event: WatchEvent): void;
     mochaOptions?: MochaSetupOptions;
     /**
      * static asserts.
@@ -21,6 +23,7 @@ export interface NodeBuildOption extends TaskOption {
      * @memberOf NodeBuildOption
      */
     asserts?: IMap<Src>;
+    assertWatchChanged?(assert: string, config: TaskConfig, event: WatchEvent): void;
 }
 
 export default <ITaskDefine>{
@@ -34,7 +37,7 @@ export default <ITaskDefine>{
                 switch (oper) {
                     case Operation.build:
                         tasks = ['clean', ['copy-asserts', 'tscompile']];
-                        if (env.watch !== false) {
+                        if (env.watch) {
                             tasks.push('watch');
                         }
                         break;
@@ -42,7 +45,7 @@ export default <ITaskDefine>{
                     case Operation.e2e:
                     case Operation.release:
                         tasks = ['clean', ['copy-asserts', 'tscompile'], 'test'];
-                        if (env.watch !== false) {
+                        if (env.watch) {
                             tasks.push('watch');
                         }
                         break;
@@ -74,6 +77,7 @@ export default <ITaskDefine>{
         // if (oper >= Operation.deploy) {
         //     taskDirs.push(path.join(__dirname, './tasks/deploy'));
         // }
+        console.log('load task from dirs:', taskDirs);
         return loadFromDir(taskDirs);
     }
 };
