@@ -25,7 +25,9 @@ import  { Development } from 'development-tool';
 
 Development.create(gulp, __dirname, {
     tasks:[
-        {
+        src: 'src',
+        dist: 'lib',
+        loader: {
             type:'module' //'module, dir'
             module:'development-tool-node'
         }
@@ -34,8 +36,24 @@ Development.create(gulp, __dirname, {
 
 Development.create(gulp, __dirname, {
     tasks:{
-        type:'module' //'module, dir'
-        module:'development-tool-node'
+        src: 'src',
+        dist: 'lib',
+        loader: {
+            type:'module' //'module, dir'
+            module:'development-tool-node'
+        }
+    }
+});
+
+Development.create(gulp, __dirname, {
+    tasks: {
+        src: 'src',
+        dist: 'lib',
+        loader: {
+            type: 'dir',
+            // taskDefine: taskDefine,
+            configModule: path.join(__dirname, './src/task.ts')
+        }
     }
 });
 

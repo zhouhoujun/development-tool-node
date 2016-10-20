@@ -1,6 +1,6 @@
 {
   "name": "development-tool-node",
-  "version": "0.0.1-rc",
+  "version": "0.0.1-rc2",
   "description": "development build tools for node.",
   "main": "./lib/task.js",
   "typings": "./lib/task",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "development-tool": "0.0.1-rc",
+    "development-tool": "0.0.1",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
     "tslint": "^3.15.1",
