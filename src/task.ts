@@ -67,11 +67,14 @@ export default <ITaskDefine>{
             oper: oper,
             env: env,
             option: option,
-            runTasks(): Src[] {
+            runTasks(subgpTask?: Src): Src[] {
                 let tasks: Src[] = ['clean'];
                 switch (oper) {
                     case Operation.build:
                         tasks = ['clean', ['copy-asserts', 'tscompile']];
+                        if (subgpTask) {
+                            tasks.push(subgpTask);
+                        }
                         if (env.watch) {
                             tasks.push('watch');
                         }
@@ -79,7 +82,11 @@ export default <ITaskDefine>{
                     case Operation.test:
                     case Operation.e2e:
                     case Operation.release:
-                        tasks = ['clean', ['copy-asserts', 'tscompile'], 'test'];
+                        tasks = ['clean', ['copy-asserts', 'tscompile']];
+                        if (subgpTask) {
+                            tasks.push(subgpTask);
+                        }
+                        tasks.push('test');
                         if (env.watch) {
                             tasks.push('watch');
                         }
@@ -89,7 +96,11 @@ export default <ITaskDefine>{
                     // case Operation.release:
                     //     break;
                     case Operation.deploy:
-                        tasks = ['clean', ['copy-asserts', 'tscompile'], 'test'];
+                        tasks = ['clean', ['copy-asserts', 'tscompile']];
+                        if (subgpTask) {
+                            tasks.push(subgpTask);
+                        }
+                        tasks.push('test');
                         break;
                 }
                 return tasks;
