@@ -2,8 +2,8 @@ import { Gulp } from 'gulp';
 import * as _ from 'lodash';
 import { NodeBuildOption } from '../../task';
 import { TaskConfig } from 'development-tool';
-import * as runSequence from 'run-sequence';
 const cache = require('gulp-cached');
+import * as chalk from 'chalk';
 
 export = (gulp: Gulp, config: TaskConfig) => {
     let option: NodeBuildOption = <NodeBuildOption>config.option;
@@ -27,12 +27,12 @@ export = (gulp: Gulp, config: TaskConfig) => {
 
     // console.log('register copy-asserts task by gulp', tasks);
 
-    gulp.task('copy-asserts', callback => {
+    gulp.task('copy-asserts', () => {
         if (tasks.length > 0) {
-            tasks.push(callback);
-            runSequence.call(runSequence.use(gulp), tasks);
+            return config.runSequence(gulp, tasks);
         } else {
-            callback();
+            console.log(chalk.yellow('has not configed asserts in option.'));
+            return Promise.resolve();
         }
     });
 }

@@ -1,8 +1,8 @@
 /// <reference types="mocha"/>
 import * as path from 'path';
 import { WatchEvent } from 'gulp';
-import { Src, Task, TaskNameSequence, IMap, TaskConfig, EnvOption, Operation, TaskOption, tasksInModule, tasksInDir, ITaskDefine } from 'development-tool';
-
+import { Src, Task, IMap, TaskConfig, EnvOption, Operation, TaskOption, ITaskDefine } from 'development-tool';
+// import * as chalk from 'chalk';
 
 export interface NodeBuildOption extends TaskOption {
     /**
@@ -67,8 +67,8 @@ export default <ITaskDefine>{
             oper: oper,
             env: env,
             option: option,
-            runTasks(): TaskNameSequence {
-                let tasks: TaskNameSequence = ['clean'];
+            runTasks(): Src[] {
+                let tasks: Src[] = ['clean'];
                 switch (oper) {
                     case Operation.build:
                         tasks = ['clean', ['copy-asserts', 'tscompile']];
@@ -97,7 +97,7 @@ export default <ITaskDefine>{
         }
     },
 
-    moduleTaskLoader(config: TaskConfig, findInModule: tasksInModule, loadFromDir: tasksInDir): Promise<Task[]> {
+    moduleTaskLoader(config: TaskConfig): Promise<Task[]> {
         let oper = config.oper;
         let taskDirs = [path.join(__dirname, './tasks/build')];
         if (oper >= Operation.test) {
@@ -112,7 +112,7 @@ export default <ITaskDefine>{
         // if (oper >= Operation.deploy) {
         //     taskDirs.push(path.join(__dirname, './tasks/deploy'));
         // }
-        console.log('load task from dirs:', taskDirs);
-        return loadFromDir(taskDirs);
+        // console.log(chalk.grey('load task from dirs:'), taskDirs);
+        return config.findTasksInDir(taskDirs);
     }
 };
