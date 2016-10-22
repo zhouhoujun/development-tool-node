@@ -27,7 +27,7 @@ export = (gulp: Gulp, config: TaskConfig) => {
             let src: Src = (_.isArray(asst) || _.isString(asst)) ? asst : asst.src;
 
             gulp.task(tsk, () => {
-                gulp.src(src)
+                return gulp.src(src)
                     .pipe(cache('assets-' + f))
                     .pipe(gulp.dest(dist));
             });
