@@ -69,12 +69,18 @@ Development.create(gulp, __dirname, {
         tasks:[
             {
                 src: 'files be dealt with',
-                dist: 'dist',
+                dist: 'dist path',
+                // build:'build path',
+                // release: 'release path',
+                // depoly: 'depoly path',
                 loader:'development-tool-*' //the module must implement ITaskDefine.
             },
             {
                 src: ['src/apath/**/*.css', 'src/bpath/**/*.css'],
-                dist: 'dist',
+                dist: 'dist path',
+                // build:'build path',
+                // release: 'release path',
+                // depoly: 'depoly path',
                 loader: {
                     configModule: path.join(__dirname, './src/task.ts'), //the module must implement ITaskDefine.
                     dir: [path.join(__dirname, './src/mytasks')]
@@ -82,7 +88,10 @@ Development.create(gulp, __dirname, {
                 tasks: [
                     {
                         src: 'files be dealt with',
-                        dist: 'dist',
+                        dist: 'dist path',
+                        // build:'build path',
+                        // release: 'release path',
+                        // depoly: 'depoly path',
                         loader: {
                             //./src/mytasks folder must has module implement ITaskDefine.
                             dir: path.join(__dirname, './src/mytasks')
@@ -90,7 +99,10 @@ Development.create(gulp, __dirname, {
                     },
                     {
                         src: 'files be dealt with',
-                        dist: 'dist',
+                        dist: 'dist path',
+                        // build:'build path',
+                        // release: 'release path',
+                        // depoly: 'depoly path',
                         loader: {
                             module: path.join(__dirname, './src/mytasks/dosomething'),
                             configModule: path.join(__dirname, './src/mytasks/config') //the module must implement ITaskDefine.
