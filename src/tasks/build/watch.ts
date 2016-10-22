@@ -1,7 +1,7 @@
 import { Gulp, WatchCallback, WatchEvent } from 'gulp';
 import * as _ from 'lodash';
 import { NodeBuildOption } from '../../task';
-import { TaskConfig } from 'development-tool';
+import { Src, TaskConfig } from 'development-tool';
 // const browserSync = require('browser-sync');
 
 export = (gulp: Gulp, config: TaskConfig) => {
@@ -21,7 +21,9 @@ export = (gulp: Gulp, config: TaskConfig) => {
         // watch asserts
         if (option.asserts) {
             _.each(_.keys(option.asserts), f => {
-                gulp.watch(option.asserts[f],
+                let asst = option.asserts[f];
+                let src: Src = (_.isArray(asst) || _.isString(asst)) ? asst : asst.src;
+                gulp.watch(src,
                     [
                         'copy-' + f,
                         (event: WatchEvent) => {

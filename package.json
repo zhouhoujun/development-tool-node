@@ -1,6 +1,6 @@
 {
   "name": "development-tool-node",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "development build tools for node.",
   "main": "./lib/task.js",
   "typings": "./lib/task",
@@ -42,6 +42,7 @@
     "gulp": "^3.9.1",
     "gulp-cached": "^1.1.0",
     "gulp-mocha": "^3.0.1",
+    "gulp-sourcemaps": "^2.1.1",
     "gulp-typescript": "^3.0.2",
     "lodash": "^4.13.1",
     "merge2": "^1.0.2",
@@ -49,7 +50,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "development-tool": "0.0.2",
+    "development-tool": "^0.2.0",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
     "tslint": "^3.15.1",

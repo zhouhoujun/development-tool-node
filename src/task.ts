@@ -1,8 +1,9 @@
 /// <reference types="mocha"/>
 import * as path from 'path';
 import { WatchEvent } from 'gulp';
-import { Src, Task, IMap, TaskConfig, EnvOption, Operation, TaskOption, ITaskDefine } from 'development-tool';
-// import * as chalk from 'chalk';
+import { Asserts, Src, Task, IMap, TaskConfig, EnvOption, Operation, TaskOption, ITaskDefine } from 'development-tool';
+import * as chalk from 'chalk';
+
 
 export interface NodeBuildOption extends TaskOption {
     /**
@@ -43,12 +44,12 @@ export interface NodeBuildOption extends TaskOption {
      */
     mochaOptions?: MochaSetupOptions;
     /**
-     * static asserts.
+     * static asserts config to copy to dist.
      * 
      * @type {string[]}
      * @memberOf NodeBuildOption
      */
-    asserts?: IMap<Src>;
+    asserts?: IMap<Src | Asserts>;
     /**
      * watch assert file changed.
      * 
@@ -80,7 +81,6 @@ export default <ITaskDefine>{
                         }
                         break;
                     case Operation.test:
-                    case Operation.e2e:
                     case Operation.release:
                         tasks = ['clean', ['copy-asserts', 'tscompile']];
                         if (subgpTask) {
@@ -91,8 +91,9 @@ export default <ITaskDefine>{
                             tasks.push('watch');
                         }
                         break;
-                    // case Operation.e2e:
-                    //     break;
+                    case Operation.e2e:
+                        console.log(chalk.red('can not support e2e test.'))
+                        break;
                     // case Operation.release:
                     //     break;
                     case Operation.deploy:
