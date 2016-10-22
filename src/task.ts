@@ -46,7 +46,7 @@ export interface NodeBuildOption extends TaskOption {
     /**
      * static asserts config to copy to dist.
      * 
-     * @type {string[]}
+     * @type {(IMap<Src | Asserts>)}
      * @memberOf NodeBuildOption
      */
     asserts?: IMap<Src | Asserts>;
