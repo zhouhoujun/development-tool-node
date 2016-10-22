@@ -36,6 +36,9 @@ Development.create(gulp, __dirname, {
         <NodeBuildOption>{
             src: 'src',
             dist: 'lib',
+            // build:'build path',
+            // release: 'release path',
+            // depoly: 'depoly path'
             asserts:{
                 json: 'src/**/*.json',
                 css:'src/common/**/*.css',
