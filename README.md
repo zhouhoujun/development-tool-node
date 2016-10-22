@@ -19,44 +19,86 @@ npm install development-tool-node
 
 You can `import` modules:
 
-```js
+## import module
+
+```ts
 import * as gulp from 'gulp';
 import  { Development } from 'development-tool';
+import { NodeBuildOption } from 'development-tool-node';
 
+```
+
+## Create development tool
+
+```ts
 Development.create(gulp, __dirname, {
     tasks:[
-        src: 'src',
-        dist: 'lib',
-        loader: {
-            type:'module' //'module, dir'
-            module:'development-tool-node'
+        <NodeBuildOption>{
+            src: 'src',
+            dist: 'lib',
+            asserts:{
+                json: 'src/**/*.json',
+                css:'src/common/**/*.css',
+                moduleBcss: ['src/moduleB/**/*.css'],
+                moduleAcss: {
+                    src: ['src/apath/**/*.css', 'src/bpath/**/*.css'],
+                    dist:'dist path',
+                    build:'build path',
+                    release: 'release path',
+                    depoly: 'depoly path'
+                },
+                ...
+            },
+            loader: 'development-tool-node'
         }
     ]
 });
+```
 
+## Create development tool with addation sub tasks
+
+```ts
 Development.create(gulp, __dirname, {
     tasks:{
         src: 'src',
         dist: 'lib',
-        loader: {
-            type:'module' //'module, dir'
-            module:'development-tool-node'
-        }
+        loader: 'development-tool-node',
+        tasks:[
+            {
+                src: 'files be dealt with',
+                dist: 'dist',
+                loader:'development-tool-*' //the module must implement ITaskDefine.
+            },
+            {
+                src: ['src/apath/**/*.css', 'src/bpath/**/*.css'],
+                dist: 'dist',
+                loader: {
+                    configModule: path.join(__dirname, './src/task.ts'), //the module must implement ITaskDefine.
+                    dir: [path.join(__dirname, './src/mytasks')]
+                },
+                tasks: [
+                    {
+                        src: 'files be dealt with',
+                        dist: 'dist',
+                        loader: {
+                            //./src/mytasks folder must has module implement ITaskDefine.
+                            dir: path.join(__dirname, './src/mytasks')
+                        }
+                    },
+                    {
+                        src: 'files be dealt with',
+                        dist: 'dist',
+                        loader: {
+                            module: path.join(__dirname, './src/mytasks/dosomething'),
+                            configModule: path.join(__dirname, './src/mytasks/config') //the module must implement ITaskDefine.
+                        }
+                    }
+                ]
+            }
+            ...
+        ]
     }
 });
-
-Development.create(gulp, __dirname, {
-    tasks: {
-        src: 'src',
-        dist: 'lib',
-        loader: {
-            type: 'dir',
-            // taskDefine: taskDefine,
-            configModule: path.join(__dirname, './src/task.ts')
-        }
-    }
-});
-
 ```
 
 https://github.com/zhouhoujun/development-tool-node.git
