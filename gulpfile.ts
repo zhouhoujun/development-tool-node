@@ -7,13 +7,9 @@ import { NodeBuildOption } from './src/task';
 // import taskDefine from './src/task';
 
 Development.create(gulp, __dirname, {
-    tasks: <NodeBuildOption>{
+    tasks: {
         src: 'src',
         dist: 'lib',
-        asserts: {
-            json: 'src/**/*.jpg',
-            css: 'src/**/*.css'
-        },
         loader: path.join(__dirname, './src/task.ts')
     }
 });
@@ -24,7 +20,7 @@ Development.create(gulp, __dirname, {
 //         src: 'src',
 //         dist: 'lib',
 //         asserts: {
-//             json: 'src/**/*.jpg',
+//             json: 'src/**/*.json',
 //             css: 'src/**/*.css'
 //         },
 //         loader: {
@@ -35,7 +31,7 @@ Development.create(gulp, __dirname, {
 //                 src: 'src',
 //                 dist: 'lib',
 //                 asserts: {
-//                     json: 'src/**/*.jpg',
+//                     json: 'src/**/*.json',
 //                     css: 'src/**/*.css'
 //                 },
 //                 loader: {
@@ -48,8 +44,8 @@ Development.create(gulp, __dirname, {
 //                         src: 'src',
 //                         dist: 'lib',
 //                         asserts: {
-//                             json: 'src/**/*.jpg',
-//                             css: 'src/**/*.css'
+//                             jpg: 'src/**/*.jpg',
+//                             jpeg: 'src/**/*.jpeg'
 //                         },
 //                         loader: {
 //                             module: path.join(__dirname, './src/task.ts')
