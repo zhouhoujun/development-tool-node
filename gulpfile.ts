@@ -2,7 +2,6 @@ import * as gulp from 'gulp';
 import { Development } from 'development-tool';
 import * as path from 'path';
 
-import { NodeBuildOption } from './src/task';
 // require('ts-node').register({ /* options */ });
 // import taskDefine from './src/task';
 
@@ -14,7 +13,9 @@ Development.create(gulp, __dirname, {
     }
 });
 
+
 // test
+// import { NodeBuildOption } from './src/task';
 // Development.create(gulp, __dirname, {
 //     tasks: <NodeBuildOption>{
 //         src: 'src',
