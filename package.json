@@ -2,8 +2,8 @@
   "name": "development-tool-node",
   "version": "0.1.0",
   "description": "development build tools for node.",
-  "main": "./lib/task.js",
-  "typings": "./lib/task",
+  "main": "./lib/index.js",
+  "typings": "./lib/index",
   "scripts": {
     "gulp": "gulp",
     "postinstall": "npm prune",
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "development-tool": "^0.4.1",
+    "development-tool": "^0.4.2",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
     "tslint": "^3.15.1",

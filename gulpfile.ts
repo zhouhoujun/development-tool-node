@@ -3,19 +3,19 @@ import { Development } from 'development-tool';
 import * as path from 'path';
 
 // require('ts-node').register({ /* options */ });
-// import taskDefine from './src/task';
+// import taskDefine from './src/index';
 
 Development.create(gulp, __dirname, {
     tasks: {
         src: 'src',
         dist: 'lib',
-        loader: path.join(__dirname, './src/task.ts')
+        loader: path.join(__dirname, './src/index.ts')
     }
 });
 
 
 // test
-// import { NodeBuildOption } from './src/task';
+// import { NodeBuildOption } from './src/index';
 // Development.create(gulp, __dirname, {
 //     tasks: <NodeBuildOption>{
 //         src: 'src',
@@ -25,7 +25,7 @@ Development.create(gulp, __dirname, {
 //             css: 'src/**/*.css'
 //         },
 //         loader: {
-//             module: path.join(__dirname, './src/task.ts')
+//             module: path.join(__dirname, './src/index.ts')
 //         },
 //         tasks: [
 //             <NodeBuildOption>{
@@ -38,7 +38,7 @@ Development.create(gulp, __dirname, {
 //                 loader: {
 //                     type: 'dir',
 //                     // taskDefine: taskDefine,
-//                     configModule: path.join(__dirname, './src/task.ts')
+//                     configModule: path.join(__dirname, './src/index.ts')
 //                 },
 //                 tasks: [
 //                     <NodeBuildOption>{
@@ -49,7 +49,7 @@ Development.create(gulp, __dirname, {
 //                             jpeg: 'src/**/*.jpeg'
 //                         },
 //                         loader: {
-//                             module: path.join(__dirname, './src/task.ts')
+//                             module: path.join(__dirname, './src/index.ts')
 //                         }
 //                     }
 //                 ]
