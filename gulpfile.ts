@@ -1,17 +1,32 @@
 import * as gulp from 'gulp';
-import { Development } from 'development-tool';
+import { Operation, currentOperation, bindingConfig, runTaskSequence, IEnvOption, generateTask, findTasksInDir } from 'development-core';
 import * as path from 'path';
+import * as minimist from 'minimist';
 
-// require('ts-node').register({ /* options */ });
-// import taskDefine from './src/index';
+gulp.task('build', () => {
+    var env: IEnvOption = minimist(process.argv.slice(2), {
+        string: 'env',
+        default: { env: process.env.NODE_ENV || 'development' }
+    });
 
-Development.create(gulp, __dirname, {
-    tasks: {
-        src: 'src',
-        dist: 'lib',
-        loader: path.join(__dirname, './src/index.ts')
-    }
+    let oper: Operation = currentOperation(env);
+    let config = bindingConfig({
+        env: env,
+        oper: oper,
+        option: {
+            src: 'src',
+            dist: 'lib',
+            asserts: {
+                ts: findTasksInDir(path.join(__dirname, './src/tasks'), { group: 'ts' })
+            }
+        }
+    });
+    return findTasksInDir(path.join(__dirname, './src/tasks'))
+        .then(tasks => {
+            return runTaskSequence(gulp, tasks, config);
+        })
 });
+
 
 
 // test
