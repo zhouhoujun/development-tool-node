@@ -1,10 +1,10 @@
 /// <reference types="mocha"/>
 import * as _ from 'lodash';
 import * as path from 'path';
-import { DynamicTask, Operation } from 'development-tool';
+import { IDynamicTask, Operation } from 'development-core';
 // import * as chalk from 'chalk';
 import * as mocha from 'gulp-mocha';
-import { NodeTaskOption } from './NodeTaskOption';
+import { INodeTaskOption } from './NodeTaskOption';
 
 
 const del = require('del');
@@ -15,7 +15,7 @@ const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 
 // import * as chalk from 'chalk';
-let nodeDynamicTasks: DynamicTask[] = [
+let nodeIDynamicTasks: IDynamicTask[] = [
     {
         name: 'clean',
         order: 0,
@@ -26,7 +26,7 @@ let nodeDynamicTasks: DynamicTask[] = [
         oper: Operation.e2e | Operation.test,
         pipe(gulpsrc, config) {
             return gulpsrc
-                .pipe(mocha((<NodeTaskOption>config.option).mochaOptions))
+                .pipe(mocha((<INodeTaskOption>config.option).mochaOptions))
                 .once('error', () => {
                     process.exit(1);
                 })
@@ -37,11 +37,11 @@ let nodeDynamicTasks: DynamicTask[] = [
     }
 ];
 
-let tsDynamicTasks = <DynamicTask[]>[
+let tsIDynamicTasks = <IDynamicTask[]>[
     {
         name: 'ts-compile',
         pipes(config) {
-            let option = <NodeTaskOption>config.option;
+            let option = <INodeTaskOption>config.option;
             // console.log(config);
             let tsProject = ts.createProject(path.join(config.env.root, option.tsconfig || './tsconfig.json'));
             return [
@@ -53,7 +53,7 @@ let tsDynamicTasks = <DynamicTask[]>[
         output: [
             (tsmap, config, gulp) => tsmap.dts.pipe(gulp.dest(config.getDist())),
             (tsmap, config, gulp) => {
-                let option = <NodeTaskOption>config.option;
+                let option = <INodeTaskOption>config.option;
                 if (config.oper === Operation.release || config.oper === Operation.deploy) {
                     return tsmap.js
                         .pipe(babel(option.tsBabelOption || {
@@ -79,6 +79,6 @@ let tsDynamicTasks = <DynamicTask[]>[
 
 
 export default {
-    tsDynamicTasks: tsDynamicTasks,
-    nodeDynamicTasks: nodeDynamicTasks
+    tsIDynamicTasks: tsIDynamicTasks,
+    nodeIDynamicTasks: nodeIDynamicTasks
 }

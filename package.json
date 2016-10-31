@@ -49,11 +49,11 @@
     "gulp-uglify": "^2.0.0",
     "lodash": "^4.13.1",
     "merge2": "^1.0.2",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.3",
+    "development-core": "^0.4.10"
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "development-tool": "^0.4.2",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
     "tslint": "^3.15.1",

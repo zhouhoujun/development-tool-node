@@ -1,33 +1,29 @@
-import {  TaskOption } from 'development-tool';
+import {  ITaskOption } from 'development-core';
 
 
 
-export interface NodeTaskOption extends TaskOption {
+export interface INodeTaskOption extends ITaskOption {
     /**
      * tsconfig for typescript
      * 
      * @type {string}
-     * @memberOf NodeTaskOption
+     * @memberOf INodeTaskOption
      */
     tsconfig?: string;
 
+    /**
+     * babel option.
+     * 
+     * @type {*}
+     * @memberOf INodeTaskOption
+     */
     tsBabelOption?: any;
     /**
      * mocha test config.
      * 
      * @type {MochaSetupOptions}
-     * @memberOf NodeTaskOption
+     * @memberOf INodeTaskOption
      */
     mochaOptions?: MochaSetupOptions;
 }
 
-/**
- * unused. please use NodeTaskOption
- * 
- * @export
- * @interface NodeBuildOption
- * @extends {NodeTaskOption}
- */
-export interface NodeBuildOption extends NodeTaskOption {
-
-}
