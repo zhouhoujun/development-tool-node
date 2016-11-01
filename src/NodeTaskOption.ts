@@ -1,4 +1,4 @@
-import {  ITaskOption } from 'development-core';
+import { ITaskOption } from 'development-core';
 
 
 

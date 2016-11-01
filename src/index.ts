@@ -1,11 +1,12 @@
 /// <reference types="mocha"/>
 import * as _ from 'lodash';
-import { findTasks, ITaskConfig, IEnvOption, Operation, ITaskOption, ITaskDefine, taskdefine } from 'development-core';
+import { ITask, findTasks, ITaskConfig, IEnvOption, Operation, ITaskOption, ITaskDefine, taskdefine } from 'development-core';
 
 export * from './NodeTaskOption';
 
 import { TsTasks } from './tasks/tsTask';
 
+import { NodeDynamicTasks } from './tasks/nodeDefaultTask';
 
 @taskdefine
 export class Define implements ITaskDefine {
@@ -23,5 +24,9 @@ export class Define implements ITaskDefine {
             env: env,
             option: option
         }
+    }
+
+    loadTasks(config: ITaskConfig): Promise<ITask[]> {
+        return config.findTasks(NodeDynamicTasks)
     }
 }

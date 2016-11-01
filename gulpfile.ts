@@ -15,7 +15,8 @@ gulp.task('build', () => {
         oper: oper,
         option: {
             src: 'src/**/*.ts',
-            dist: 'lib'
+            dist: 'lib',
+            testSrc: 'test/**/*.spec.ts'
         }
     });
     return Promise.all([

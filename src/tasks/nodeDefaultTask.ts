@@ -1,4 +1,4 @@
-/// <reference types="mocha"/>
+
 import * as _ from 'lodash';
 // import * as path from 'path';
 import { IDynamicTask, Operation, IDynamicTasks, dynamicTask } from 'development-core';
@@ -22,6 +22,7 @@ export class NodeDynamicTasks implements IDynamicTasks {
             {
                 name: 'test',
                 order: 1,
+                test: true,
                 oper: Operation.test | Operation.release | Operation.deploy,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)
