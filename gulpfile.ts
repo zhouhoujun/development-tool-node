@@ -1,12 +1,12 @@
 import * as gulp from 'gulp';
-import { Operation, currentOperation, bindingConfig, runTaskSequence, IEnvOption, generateTask, findTasksInDir } from 'development-core';
+import { Operation, currentOperation, bindingConfig, runTaskSequence, IEnvOption, ITaskConfig, findTasksInDir } from 'development-core';
 import * as path from 'path';
 import * as minimist from 'minimist';
 
 gulp.task('build', () => {
     var env: IEnvOption = minimist(process.argv.slice(2), {
         string: 'env',
-        default: { env: process.env.NODE_ENV || 'development' }
+        default: { env: process.env.NODE_ENV || 'development', root: __dirname }
     });
 
     let oper: Operation = currentOperation(env);
@@ -14,16 +14,16 @@ gulp.task('build', () => {
         env: env,
         oper: oper,
         option: {
-            src: 'src',
-            dist: 'lib',
-            asserts: {
-                ts: findTasksInDir(path.join(__dirname, './src/tasks'), { group: 'ts' })
-            }
+            src: 'src/**/*.ts',
+            dist: 'lib'
         }
     });
-    return findTasksInDir(path.join(__dirname, './src/tasks'))
+    return Promise.all([
+        findTasksInDir(path.join(__dirname, './src/tasks')),
+        findTasksInDir(path.join(__dirname, './src/tasks'), { group: 'ts' })
+    ])
         .then(tasks => {
-            return runTaskSequence(gulp, tasks, config);
+            return runTaskSequence(gulp, tasks[0].concat(tasks[1]), config);
         })
 });
 

@@ -10,9 +10,7 @@ import { INodeTaskOption } from '../NodeTaskOption';
 const del = require('del');
 
 
-@dynamicTask({
-    group: 'nodeMain'
-})
+@dynamicTask
 export class NodeDynamicTasks implements IDynamicTasks {
     tasks(): IDynamicTask[] {
         return [

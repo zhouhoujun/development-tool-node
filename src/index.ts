@@ -1,12 +1,11 @@
 /// <reference types="mocha"/>
 import * as _ from 'lodash';
-import { findTasks, ITaskConfig, IEnvOption, Operation, ITaskOption, ITaskDefine, taskdefine, dynamicTask } from 'development-core';
+import { findTasks, ITaskConfig, IEnvOption, Operation, ITaskOption, ITaskDefine, taskdefine } from 'development-core';
 
 export * from './NodeTaskOption';
 
 import { TsTasks } from './tasks/tsTask';
 
-export * from './tasks/nodeDefaultTask';
 
 @taskdefine
 export class Define implements ITaskDefine {
@@ -14,7 +13,7 @@ export class Define implements ITaskDefine {
         // register default asserts.
         option.asserts = _.extend({
             ts: {
-                loader: { module:  TsTasks }
+                loader: () => findTasks(TsTasks, { group: 'ts' })
             }
         }, option.asserts);
 
