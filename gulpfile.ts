@@ -19,9 +19,11 @@ gulp.task('build', () => {
             testSrc: 'test/**/*.spec.ts'
         }
     });
+
+    console.log(config);
     return Promise.all([
-        findTasksInDir(path.join(__dirname, './src/tasks')),
-        findTasksInDir(path.join(__dirname, './src/tasks'), { group: 'ts' })
+        config.findTasksInDir(path.join(__dirname, './src/tasks')),
+        config.findTasksInDir(path.join(__dirname, './src/tasks'), { group: 'ts' })
     ])
         .then(tasks => {
             return runTaskSequence(gulp, tasks[0].concat(tasks[1]), config);

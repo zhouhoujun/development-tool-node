@@ -4,7 +4,7 @@ import { ITask, findTasks, ITaskConfig, IEnvOption, Operation, ITaskOption, ITas
 
 export * from './NodeTaskOption';
 
-import { TsTasks } from './tasks/tsTask';
+import * as asserts from './tasks/asserts';
 
 import { NodeDynamicTasks } from './tasks/nodeDefaultTask';
 
@@ -14,7 +14,7 @@ export class Define implements ITaskDefine {
         // register default asserts.
         option.asserts = _.extend({
             ts: {
-                loader: () => findTasks(TsTasks, { group: 'ts' })
+                loader: (config: ITaskConfig) => config.findTasks(asserts, { group: 'ts' })
             }
         }, option.asserts);
 
