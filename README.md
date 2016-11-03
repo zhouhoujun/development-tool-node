@@ -24,7 +24,7 @@ You can `import` modules:
 ```ts
 import * as gulp from 'gulp';
 import  { Development } from 'development-tool';
-import { NodeBuildOption } from 'development-tool-node';
+import { INodeTaskOption } from 'development-tool-node';
 
 ```
 
@@ -33,7 +33,7 @@ import { NodeBuildOption } from 'development-tool-node';
 ```ts
 Development.create(gulp, __dirname, {
     tasks:[
-        <NodeBuildOption>{
+        <INodeTaskOption>{
             src: 'src',
             dist: 'lib',
             // build:'build path',
