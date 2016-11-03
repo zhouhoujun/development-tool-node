@@ -35,10 +35,13 @@ Development.create(gulp, __dirname, {
     tasks:[
         <INodeTaskOption>{
             src: 'src',
+            //testSrc: '...',
+            //e2eSrc: '...',
+            //watchSrc: '...'
             dist: 'lib',
-            // build:'build path',
-            // release: 'release path',
-            // depoly: 'depoly path'
+            // buildDist:'build path',
+            // releaseDist: 'release path',
+            // depolyDist: 'depoly path'
             asserts:{
                 json: 'src/**/*.json',
                 css:'src/common/**/*.css',
@@ -46,9 +49,9 @@ Development.create(gulp, __dirname, {
                 moduleAcss: {
                     src: ['src/apath/**/*.css', 'src/bpath/**/*.css'],
                     dist:'dist path',
-                    build:'build path',
-                    release: 'release path',
-                    depoly: 'depoly path'
+                    buildDist:'buildDist path',
+                    releaseDist: 'release Distpath',
+                    depolyDist: 'depoly Distpath'
                 },
                 ...
             },
@@ -64,23 +67,35 @@ Development.create(gulp, __dirname, {
 Development.create(gulp, __dirname, {
     tasks:{
         src: 'src',
+        //testSrc: '...',
+        //e2eSrc: '...',
+        //watchSrc: '...'
         dist: 'lib',
+        // buildDist:'build path',
+        // releaseDist: 'release path',
+        // depolyDist: 'depoly path'
         loader: 'development-tool-node',
         tasks:[
             {
                 src: 'files be dealt with',
+                //testSrc: '...',
+                //e2eSrc: '...',
+                //watchSrc: '...'
                 dist: 'dist path',
-                // build:'build path',
-                // release: 'release path',
-                // depoly: 'depoly path',
+                // buildDist:'build path',
+                // releaseDist: 'release path',
+                // depolyDist: 'depoly path'
                 loader:'development-tool-*' //the module must implement ITaskDefine.
             },
             {
                 src: ['src/apath/**/*.css', 'src/bpath/**/*.css'],
+                //testSrc: '...',
+                //e2eSrc: '...',
+                //watchSrc: '...'
                 dist: 'dist path',
-                // build:'build path',
-                // release: 'release path',
-                // depoly: 'depoly path',
+                // buildDist:'build path',
+                // releaseDist: 'release path',
+                // depolyDist: 'depoly path'
                 loader: {
                     configModule: path.join(__dirname, './src/task.ts'), //the module must implement ITaskDefine.
                     dir: [path.join(__dirname, './src/mytasks')]
@@ -88,10 +103,13 @@ Development.create(gulp, __dirname, {
                 tasks: [
                     {
                         src: 'files be dealt with',
+                        //testSrc: '...',
+                        //e2eSrc: '...',
+                        //watchSrc: '...'
                         dist: 'dist path',
-                        // build:'build path',
-                        // release: 'release path',
-                        // depoly: 'depoly path',
+                        // buildDist:'build path',
+                        // releaseDist: 'release path',
+                        // depolyDist: 'depoly path'
                         loader: {
                             //./src/mytasks folder must has module implement ITaskDefine.
                             dir: path.join(__dirname, './src/mytasks')
@@ -99,10 +117,13 @@ Development.create(gulp, __dirname, {
                     },
                     {
                         src: 'files be dealt with',
+                        //testSrc: '...',
+                        //e2eSrc: '...',
+                        //watchSrc: '...'
                         dist: 'dist path',
-                        // build:'build path',
-                        // release: 'release path',
-                        // depoly: 'depoly path',
+                        // buildDist:'build path',
+                        // releaseDist: 'release path',
+                        // depolyDist: 'depoly path'
                         loader: {
                             module: path.join(__dirname, './src/mytasks/dosomething'),
                             configModule: path.join(__dirname, './src/mytasks/config') //the module must implement ITaskDefine.
