@@ -1,4 +1,4 @@
-import { IDynamicTask, IDynamicTasks } from 'development-core';
+import { IDynamicTaskOption, IDynamicTasks } from 'development-core';
 export declare class NodeDynamicTasks implements IDynamicTasks {
-    tasks(): IDynamicTask[];
+    tasks(): IDynamicTaskOption[];
 }

@@ -55,6 +55,8 @@ Development.create(gulp, __dirname, {
                 },
                 ...
             },
+            pipes: Pipe[] | (config, dist, gulp)=> Pipe[],
+            output: OutputPipe[] | (stream, config, dist, gulp)=> OutputPipe[],
             loader: 'development-tool-node'
         }
     ]

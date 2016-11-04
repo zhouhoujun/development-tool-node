@@ -1,7 +1,7 @@
 
 import * as _ from 'lodash';
 // import * as path from 'path';
-import { IDynamicTask, Operation, IDynamicTasks, dynamicTask } from 'development-core';
+import { IDynamicTaskOption, Operation, IDynamicTasks, dynamicTask } from 'development-core';
 // import * as chalk from 'chalk';
 import * as mocha from 'gulp-mocha';
 import { INodeTaskOption } from '../NodeTaskOption';
@@ -12,7 +12,7 @@ const del = require('del');
 
 @dynamicTask
 export class NodeDynamicTasks implements IDynamicTasks {
-    tasks(): IDynamicTask[] {
+    tasks(): IDynamicTaskOption[] {
         return [
             {
                 name: 'clean',
