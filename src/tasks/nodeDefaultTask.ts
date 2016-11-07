@@ -16,8 +16,10 @@ export class NodeDynamicTasks implements IDynamicTasks {
         return [
             {
                 name: 'clean',
+                // cleanSrc: 'lib/**/*.js',
+                oper: Operation.clean | Operation.default,
                 order: 0,
-                task: (config) => del(config.getDist())
+                task: (config, dt) => del(config.getDist(config.getSrc(dt, dt)))
             },
             {
                 name: 'test',
