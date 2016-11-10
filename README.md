@@ -55,9 +55,12 @@ Development.create(gulp, __dirname, {
                 },
                 ...
             },
+
+            loader: 'development-tool-node',
+             // add pipe works for module tasks.
+            pipe(stream, config, dist, gulp){ ... }
             pipes: Pipe[] | (config, dist, gulp)=> Pipe[],
-            output: OutputPipe[] | (stream, config, dist, gulp)=> OutputPipe[],
-            loader: 'development-tool-node'
+            output: OutputPipe[] | (stream, config, dist, gulp)=> OutputPipe[]
         }
     ]
 });
@@ -128,8 +131,16 @@ Development.create(gulp, __dirname, {
                         // depolyDist: 'depoly path'
                         loader: {
                             module: path.join(__dirname, './src/mytasks/dosomething'),
+                             // add pipe works for module tasks.
+                            pipe(stream, config, dist, gulp){ ... }
+                            pipes: Pipe[] | (config, dist, gulp)=> Pipe[],
+                            output: OutputPipe[] | (stream, config, dist, gulp)=> OutputPipe[]
                             configModule: path.join(__dirname, './src/mytasks/config') //the module must implement ITaskDefine.
-                        }
+                        },
+                        // also can add pipe works for module tasks here.
+                        pipe(stream, config, dist, gulp){ ... }
+                        pipes: Pipe[] | (config, dist, gulp)=> Pipe[],
+                        output: OutputPipe[] | (stream, config, dist, gulp)=> OutputPipe[]
                     }
                 ]
             }
