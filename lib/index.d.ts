@@ -1,6 +1,6 @@
-import { ITask, ITaskConfig, IEnvOption, ITaskOption, ITaskDefine } from 'development-core';
+import { ITask, ITaskConfig, IContextDefine, ITaskContext } from 'development-core';
 export * from './NodeTaskOption';
-export declare class Define implements ITaskDefine {
-    loadConfig(option: ITaskOption, env: IEnvOption): ITaskConfig;
-    loadTasks(config: ITaskConfig): Promise<ITask[]>;
+export declare class NodeContextDefine implements IContextDefine {
+    getContext(config: ITaskConfig): ITaskContext;
+    tasks(context: ITaskContext): Promise<ITask[]>;
 }

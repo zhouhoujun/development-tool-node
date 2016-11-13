@@ -19,12 +19,11 @@ export class NodeDynamicTasks implements IDynamicTasks {
                 // cleanSrc: 'lib/**/*.js',
                 oper: Operation.clean | Operation.default,
                 order: 0,
-                task: (config, dt) => del(config.getDist(config.getSrc(dt, dt)))
+                task: (ctx, dt) => del(ctx.getDist(ctx.getSrc(dt)))
             },
             {
                 name: 'test',
                 order: 1,
-                test: true,
                 oper: Operation.test | Operation.release | Operation.deploy,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)

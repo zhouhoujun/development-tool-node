@@ -1,27 +1,24 @@
-/// <reference types="mocha"/>
 import * as _ from 'lodash';
-import { ITask, ITaskConfig, IEnvOption, ITaskOption, ITaskDefine, taskdefine } from 'development-core';
+import { ITask, ITaskConfig, bindingConfig, IContextDefine, ITaskContext, taskdefine } from 'development-core';
 
 export * from './NodeTaskOption';
 
 import { NodeDynamicTasks } from './tasks/nodeDefaultTask';
 
 @taskdefine
-export class Define implements ITaskDefine {
-    loadConfig(option: ITaskOption, env: IEnvOption): ITaskConfig {
+export class NodeContextDefine implements IContextDefine {
+
+    getContext(config: ITaskConfig): ITaskContext {
         // register default asserts.
-        option.asserts = _.extend({
+        config.option.asserts = _.extend({
             ts: { loader: 'development-assert-ts' }
-        }, option.asserts);
+        }, config.option.asserts);
 
 
-        return <ITaskConfig>{
-            env: env,
-            option: option
-        }
+        return bindingConfig(config);
     }
 
-    loadTasks(config: ITaskConfig): Promise<ITask[]> {
-        return config.findTasks(NodeDynamicTasks)
+    tasks(context: ITaskContext): Promise<ITask[]> {
+        return context.findTasks(NodeDynamicTasks)
     }
 }
