@@ -7,6 +7,7 @@ Development.create(gulp, __dirname, [
     {
         src: 'src',
         dist: 'lib',
+        buildDist: 'build',
         loader: path.join(__dirname, './src/index.ts')
     }
 ]);

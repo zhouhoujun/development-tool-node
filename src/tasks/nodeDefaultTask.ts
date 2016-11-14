@@ -24,7 +24,7 @@ export class NodeDynamicTasks implements IDynamicTasks {
             {
                 name: 'test',
                 order: 1,
-                oper: Operation.test | Operation.release | Operation.deploy,
+                oper: Operation.test | Operation.default,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)
                 ],
