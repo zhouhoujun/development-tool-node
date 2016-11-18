@@ -1,8 +1,8 @@
-import { ITaskOption } from 'development-core';
+import { IAsserts } from 'development-core';
 
 
 
-export interface INodeTaskOption extends ITaskOption {
+export interface INodeTaskOption extends IAsserts {
     /**
      * mocha test config.
      * 

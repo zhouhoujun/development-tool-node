@@ -1,3 +1,4 @@
+/// <reference types="mocha" />
 import * as _ from 'lodash';
 import { ITask, ITaskConfig, bindingConfig, IContextDefine, ITaskContext, taskdefine } from 'development-core';
 
