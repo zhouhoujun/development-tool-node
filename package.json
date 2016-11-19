@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.1",
-    "development-assert-ts": "^0.3.2",
+    "development-assert-ts": "^0.4.0",
     "development-tool": "^0.9.0",
     "through2": "^2.0.1",
     "ts-node": "^1.6.0",
