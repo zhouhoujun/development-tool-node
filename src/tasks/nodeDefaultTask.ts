@@ -23,7 +23,7 @@ export class NodeDynamicTasks implements IDynamicTasks {
             },
             {
                 name: 'test',
-                order: 0.25,
+                order: total => 2 / total,
                 oper: Operation.test | Operation.default,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)
