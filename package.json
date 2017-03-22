@@ -49,6 +49,7 @@
         "gulp-mocha": "^3.*",
         "gulp-sourcemaps": "2.*",
         "gulp-typescript": "3.*",
+        "typescript": "^2.*",
         "gulp-uglify": "^2.*",
         "lodash": "^4.*"
     },
@@ -59,7 +60,6 @@
         "ts-node": "*",
         "tslint": "*",
         "tslint-stylish": "*",
-        "typescript": "^2.*",
         "zone.js": "*"
     },
     "homepage": "https://github.com/zhouhoujun/development-tool-node#readme"
