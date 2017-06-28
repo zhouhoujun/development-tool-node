@@ -13,7 +13,7 @@ Development.create(gulp, __dirname, [
 ]);
 
 
-// 
+//
 // import * as minimist from 'minimist';
 // import { Operation, currentOperation, bindingConfig, runTaskSequence, IEnvOption, ITaskConfig, findTasksInDir } from 'development-core';
 // gulp.task('build', () => {

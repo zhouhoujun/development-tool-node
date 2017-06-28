@@ -1,25 +1,51 @@
-/// <reference types="mocha" />
 import * as _ from 'lodash';
-import { ITask, ITaskConfig, bindingConfig, IContextDefine, ITaskContext, taskdefine } from 'development-core';
+import { ITask, IAssertOption, IEnvOption, IContextDefine, ITaskContext, ITaskConfig, taskdefine } from 'development-core';
 
+import { INodeTaskOption } from './NodeTaskOption';
 export * from './NodeTaskOption';
 
-import { NodeDynamicTasks } from './tasks/nodeDefaultTask';
+import { CleanDynamicTasks, TestDynamicTasks } from './tasks/nodeDefaultTask';
 
-@taskdefine
+@taskdefine()
 export class NodeContextDefine implements IContextDefine {
 
-    getContext(config: ITaskConfig): ITaskContext {
+    loadConfig(option: IAssertOption, env: IEnvOption): ITaskConfig {
         // register default asserts.
-        config.option.asserts = _.extend({
+        let opt = option;
+        opt.asserts = _.extend({
             ts: { loader: 'development-assert-ts' }
-        }, config.option.asserts);
+        }, opt.asserts || {});
 
 
-        return bindingConfig(config);
+        let cfg = <ITaskConfig>{
+            option: opt,
+            env: env
+        };
+        console.log(cfg);
+        return cfg;
+    }
+
+    setContext(ctx: ITaskContext) {
+        let nodeOption = ctx.option as INodeTaskOption
+        if (nodeOption.test === false) {
+            return;
+        }
+        console.log('setContext');
+        ctx.createContext(<ITaskConfig>{
+            option: <IAssertOption>{
+                name: 'test',
+                order: nodeOption.testOrder || (total => 2 / total),
+                loader: (cctx) => {
+                    console.log('load test');
+                    return cctx.findTasks(TestDynamicTasks);
+                }
+            }
+        });
+
+        // console.log('end setContext', ctx);
     }
 
     tasks(context: ITaskContext): Promise<ITask[]> {
-        return context.findTasks(NodeDynamicTasks)
+        return context.findTasks(CleanDynamicTasks);
     }
 }

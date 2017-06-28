@@ -10,8 +10,8 @@ import { INodeTaskOption } from '../NodeTaskOption';
 const del = require('del');
 
 
-@dynamicTask
-export class NodeDynamicTasks implements IDynamicTasks {
+@dynamicTask()
+export class CleanDynamicTasks implements IDynamicTasks {
     tasks(): IDynamicTaskOption[] {
         return [
             {
@@ -20,10 +20,17 @@ export class NodeDynamicTasks implements IDynamicTasks {
                 oper: Operation.clean | Operation.default,
                 order: 0,
                 task: (ctx, dt) => del(ctx.getSrc(dt))
-            },
+            }
+        ];
+    }
+}
+
+@dynamicTask()
+export class TestDynamicTasks implements IDynamicTasks {
+    tasks(): IDynamicTaskOption[] {
+        return [
             {
                 name: 'test',
-                order: total => 2 / total,
                 oper: Operation.test | Operation.default,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)
