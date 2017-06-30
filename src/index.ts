@@ -11,17 +11,15 @@ export class NodeContextDefine implements IContextDefine {
 
     loadConfig(option: IAssertOption, env: IEnvOption): ITaskConfig {
         // register default asserts.
-        let opt = option;
-        opt.asserts = _.extend({
+        option.asserts = _.extend({
             ts: { loader: 'development-assert-ts' }
-        }, opt.asserts || {});
+        }, option.asserts || {});
 
 
-        let cfg = <ITaskConfig>{
-            option: opt,
+        return <ITaskConfig>{
+            option: option,
             env: env
         };
-        return cfg;
     }
 
     setContext(ctx: ITaskContext) {
@@ -38,8 +36,6 @@ export class NodeContextDefine implements IContextDefine {
                 }
             }
         });
-
-        // console.log('end setContext', ctx);
     }
 
     tasks(context: ITaskContext): Promise<ITask[]> {
