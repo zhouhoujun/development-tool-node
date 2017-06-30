@@ -30,7 +30,7 @@ export class TestDynamicTasks implements IDynamicTasks {
     tasks(): IDynamicTaskOption[] {
         return [
             {
-                name: 'test',
+                name: 'mocha',
                 oper: Operation.test | Operation.default,
                 pipes: [
                     (config) => mocha((<INodeTaskOption>config.option).mochaOptions)

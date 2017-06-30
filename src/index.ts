@@ -21,7 +21,6 @@ export class NodeContextDefine implements IContextDefine {
             option: opt,
             env: env
         };
-        console.log('cfg:---------------------\n', opt);
         return cfg;
     }
 
@@ -30,7 +29,7 @@ export class NodeContextDefine implements IContextDefine {
         if (nodeOption.test === false) {
             return;
         }
-        ctx.createContext(<ITaskConfig>{
+        ctx.add(<ITaskConfig>{
             option: <IAssertOption>{
                 name: 'test',
                 order: nodeOption.testOrder || (total => 2 / total),
