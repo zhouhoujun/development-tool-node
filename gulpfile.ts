@@ -10,7 +10,7 @@ Development.create(gulp, __dirname, [
         buildDist: 'build',
         loader: path.join(__dirname, './src/index.ts')
     }
-]);
+]).start();
 
 
 //

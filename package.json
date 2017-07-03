@@ -1,6 +1,6 @@
 {
     "name": "development-tool-node",
-    "version": "2.0.0-beta1",
+    "version": "2.0.0",
     "description": "development build tasks for node.",
     "main": "./lib/index.js",
     "typings": "./lib/index",
@@ -41,8 +41,8 @@
         "chalk": "^1.1.3",
         "checksum": "^0.1.1",
         "del": "^2.2.1",
-        "development-assert-ts": "^2.0.0-beta3",
-        "development-core": "^2.0.0-beta3",
+        "development-assert-ts": "^2.0.0",
+        "development-core": "^2.0.0",
         "gulp": "^3.9.1",
         "gulp-cached": "^1.1.0",
         "gulp-mocha": "^3.*",
@@ -54,7 +54,7 @@
     },
     "devDependencies": {
         "bluebird": "^3.4.1",
-        "development-tool": "^2.0.0-beta3",
+        "development-tool": "^2.0.0",
         "through2": "^2.0.1",
         "ts-node": "*",
         "tslint": "*",
